@@ -5,23 +5,14 @@ import java.util.*;
 public class Dobbelsteen {
 
 	Random random = new Random();
-
-//	Dobbelsteen dobbelsteen = new Dobbelsteen();
-
 	int resultaat;
 
-	public Dobbelsteen() {
-
-	}
-
+	//Deze methode werpt de dobbelsteen met als uitkomst een random nummer tussen 1 en 6.
 	public void werpen() {
 
 		int worp = random.nextInt(6) + 1;
 
 		resultaat = worp;
-
-//		System.out.println(worp);
-
 	}
 
 	public void showResultaat() {

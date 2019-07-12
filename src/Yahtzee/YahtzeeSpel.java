@@ -2,6 +2,14 @@ package Yahtzee;
 
 import java.util.*;
 
+/**
+ * Het framework voor een Yathzeespel. Er kunnen 2 spelers toegevoegd worden aan het spel en gedobbeld worden.
+ * De Yahtzee regels om te kunnen winnen zijn nog niet geimplementeerd.
+ * 
+ * @author Roelof Daanje
+ * @version	1.0
+ *
+ */
 public class YahtzeeSpel {
 
 	static YahtzeeSpel game = new YahtzeeSpel();
@@ -15,7 +23,7 @@ public class YahtzeeSpel {
 	char[] controleArray = new char[5];
 	int[] blokkeerArray = { 0, 0, 0, 0, 0 };
 
-	boolean exitGame;
+	boolean exitGame;	
 	int aantalSpelers;
 
 	public static void main(String[] args) {
@@ -24,9 +32,9 @@ public class YahtzeeSpel {
 		game.aantalSpelers();
 
 	}
-
-	public YahtzeeSpel() {
-
+	
+	//Voegt de 5 dobbelstenen toe.
+	public YahtzeeSpel() {		
 		stenen.add(new Dobbelsteen());
 		stenen.add(new Dobbelsteen());
 		stenen.add(new Dobbelsteen());
@@ -34,7 +42,8 @@ public class YahtzeeSpel {
 		stenen.add(new Dobbelsteen());
 
 	}
-
+	
+	//Methode die het verloop van het spel uitvoerd.
 	public void spelen() {
 
 		System.out.println("Druk op 's' om te beginnen of op 'q' om te stoppen");
@@ -42,12 +51,13 @@ public class YahtzeeSpel {
 
 		do {
 
-			if (!(s2.equals("q"))) {
+			if (!(s2.equals("q"))) {		//Als er niet op q is gedrukt gaat het spel runnen.
 
 				if (aantalSpelers == 1) {
 					System.out.println("Speler 1 begint!");
 					speler1.speelRonde(stenen, blokkeerArray, gooien);
 					speler1.scoreBerekenen(speler1);
+					
 					// check winnaar
 					System.out.println("Als je alleen speelt dan win je altijd ;)");
 				} else if (aantalSpelers == 2) {
@@ -80,19 +90,20 @@ public class YahtzeeSpel {
 
 			}
 
-			else {
+			else {	//als er op q is gedrukt dan stopt het spel direct.
 
 				exitGame = true;
 				scanner.close();
 
 			}
-		} while (exitGame == false);
+		} while (exitGame == false);	//Na de ronde kan er besloten worden om het spel te stoppen. 
 		scanner.close();
 		System.out.println("Exit game");
 
 	}
 
-	public void vastHouden() {
+	//Methode om bepaalde dobbelstenen vast te houden en de andere dobbelsten opnieuw te gooien.
+	public void vastHouden() {		
 
 		System.out.println("Welke posities wilt u vasthouden? 0 voor geen anders bv 124 ");
 		String scan = scanner.nextLine();
@@ -102,13 +113,12 @@ public class YahtzeeSpel {
 		 * Afzonderlijke getallen in de string maken
 		 **/
 		input.getChars(0, input.length(), controleArray, 0); // de String wordt gesplitst in afzonderlijke
-																// getallen(chars) en
-																// in de controleArray gezet.
+																// getallen(chars) en in de controleArray gezet.
 
 		for (int i = 0; i < controleArray.length; i++) {
 
 			switch (controleArray[i]) { // de waarde in de controleArray bepaald welke dobbelsteen gehoud moet worden
-										// op die plek wordt ook de blokkeerArray op 1 gezet.
+										// op die index wordt ook de blokkeerArray op 1 gezet.
 
 			case '1':
 				blokkeerArray[0] = 1;
@@ -136,6 +146,7 @@ public class YahtzeeSpel {
 		}
 	}
 
+	//Methode om een nieuwe ronde te starten of het spel te stoppen.
 	public void verderSpelen() {
 		String input1 = scanner.nextLine();
 		if (input1.equals("y")) {
@@ -159,6 +170,7 @@ public class YahtzeeSpel {
 		}
 	}
 
+	//Methode die het aantal spelers vast stelt bij het begin van het spel.
 	public void aantalSpelers() {
 		System.out.println("Hoeveel mensen willen er spelen? (1 of 2)");
 		String s1 = scanner.nextLine();
