@@ -10,7 +10,7 @@ public class Speler {
 
 	//Constructor van de speler. De score van de speler wordt default op 0 gezet.
 	public Speler() {
-		score = 0;
+		
 	}
 
 	//De uislag van de worp (in de array) wordt toegevoegd aan de worpgeschiedenis van de speler.
